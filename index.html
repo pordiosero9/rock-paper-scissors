@@ -31,31 +31,35 @@
         return(humanChoice.toLowerCase());
       }
 
-      // These variables are for keeping scores on both sides.
-      let humanScore = 0;
-      let computerScore = 0;
+      function playGame() {
+        // These variables are for keeping scores on both sides.
+        let humanScore = 0;
+        let computerScore = 0;
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
 
-      // This function compares the human and computer choices and plays one round of the game.
-      function playRound(humanChoice, computerChoice) {
-        if (humanChoice === computerChoice) {
-          console.log("it's a chop tie.");
-        } else if ((humanChoice === "rock" && computerChoice === "scissors") 
-          ||(humanChoice === "scissors" && computerChoice === "paper")
-          ||(humanChoice === "paper" && computerChoice === "rock")) {
-          console.log("this one is correct.");
-          humanScore++;
-          console.log(humanScore)
-        } else {
-          console.log("this one it's a chop.");
-          computerScore++;
-          console.log(computerScore);
+        // This function compares the human and computer choices and plays one round of the game.
+        function playRound(humanChoice, computerChoice) {
+          if (humanChoice === computerChoice) {
+            console.log("it's a chop tie.");
+          } else if ((humanChoice === "rock" && computerChoice === "scissors") 
+            ||(humanChoice === "scissors" && computerChoice === "paper")
+            ||(humanChoice === "paper" && computerChoice === "rock")) {
+            console.log("you ate this one.");
+            humanScore++;
+            console.log(humanScore)
+          } else {
+            console.log("this one it's a chop.");
+            computerScore++;
+            console.log(computerScore);
+          }
+        }
+        for (let i = 0; i < 5; i++) {
+          playRound(humanSelection, computerSelection);
+          console.log(`This is the iteration number${i}`);
         }
       }
-
-      const humanSelection = getHumanChoice();
-      const computerSelection = getComputerChoice();
-
-      playRound(humanSelection, computerSelection);
+      playGame();
     </script>
   </body>
 </html>
