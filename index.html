@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper & Scissors</title>
+  </head>
+
+  <body>
+    <script>
+      // This function gets the computer's choice and returns a string
+      function getComputerChoice() {
+        let randomNum = Math.floor(Math.random() * 10);
+        console.log(randomNum)
+
+        if (randomNum < 3) {
+          return("rock");
+        }
+        else if (randomNum < 7) {
+          return("paper");
+        }
+        else {
+          return("scissors");
+        }
+      }
+
+      // This function gets the human choice and turns a string.
+      function getHumanChoice() {
+        let humanChoice = prompt("Rock, Paper or Scissors?");
+        return(humanChoice.toLowerCase());
+      }
+
+      // These variables are for keeping scores on both sides.
+      let humanScore = 0;
+      let computerScore = 0;
+
+      // This function compares the human and computer choices and plays one round of the game.
+      function playRound(humanChoice, computerChoice) {
+        if (humanChoice === computerChoice) {
+          console.log("it's a chop tie.");
+        } else if ((humanChoice === "rock" && computerChoice === "scissors") 
+          ||(humanChoice === "scissors" && computerChoice === "paper")
+          ||(humanChoice === "paper" && computerChoice === "rock")) {
+          console.log("this one is correct.");
+          humanScore++;
+          console.log(humanScore)
+        } else {
+          console.log("this one it's a chop.");
+          computerScore++;
+          console.log(computerScore);
+        }
+      }
+
+      const humanSelection = getHumanChoice();
+      const computerSelection = getComputerChoice();
+
+      playRound(humanSelection, computerSelection);
+    </script>
+  </body>
+</html>
