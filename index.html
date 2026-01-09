@@ -11,55 +11,84 @@
     <script>
       // This function gets the computer's choice and returns a string
       function getComputerChoice() {
-        let randomNum = Math.floor(Math.random() * 10);
-        console.log(randomNum)
+        const randomNum = Math.floor(Math.random() * 10);
+
+        let firstChoice = "rock";
+        let secondChoice = "paper";
+        let thirdChoice = "scissors";
 
         if (randomNum < 3) {
-          return("rock");
+          console.log(firstChoice);
+          return firstChoice;
         }
         else if (randomNum < 7) {
-          return("paper");
+          console.log(secondChoice);
+          return secondChoice;
         }
         else {
-          return("scissors");
+          console.log(thirdChoice);
+          return thirdChoice;
         }
       }
 
       // This function gets the human choice and turns a string.
       function getHumanChoice() {
-        let humanChoice = prompt("Rock, Paper or Scissors?");
-        return(humanChoice.toLowerCase());
+        const humanChoice = prompt("Rock, Paper or Scissors?");
+        const choice = humanChoice.toLowerCase();
+
+        console.log(choice)
+        return choice;
       }
 
+      // These variables are for keeping scores on both sides.
+      let humanScore = 0;
+      let computerScore = 0;
+
+      // This function stores the single round
       function playGame() {
-        // These variables are for keeping scores on both sides.
-        let humanScore = 0;
-        let computerScore = 0;
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
+        // These variables contain the callback functions to get the choices
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+
 
         // This function compares the human and computer choices and plays one round of the game.
         function playRound(humanChoice, computerChoice) {
+
           if (humanChoice === computerChoice) {
-            console.log("it's a chop tie.");
-          } else if ((humanChoice === "rock" && computerChoice === "scissors") 
+            console.log("It's a tie.");
+          } 
+          else if ((humanChoice === "rock" && computerChoice === "scissors") 
             ||(humanChoice === "scissors" && computerChoice === "paper")
             ||(humanChoice === "paper" && computerChoice === "rock")) {
-            console.log("you ate this one.");
-            humanScore++;
-            console.log(humanScore)
-          } else {
-            console.log("this one it's a chop.");
-            computerScore++;
-            console.log(computerScore);
+            console.log("You win this one.");
+            return humanScore++;
+          } 
+          else {
+            console.log("You lose this one.");
+            return computerScore++;
           }
         }
-        for (let i = 0; i < 5; i++) {
-          playRound(humanSelection, computerSelection);
-          console.log(`This is the iteration number${i}`);
+        playRound(humanSelection, computerSelection);
+        console.log(`You: ${humanScore} vs. Computer: ${computerScore}`);
+      }
+
+      // this 'for' loops for five rounds
+      for (let i = 0; i < 5; i++) {
+        playGame();
+
+        if (i == 4) {
+          if (humanScore == computerScore) {
+            console.log(`The game is over. It's a tie (${humanScore} vs. ${computerScore}).`);
+          }
+          else if (humanScore > computerScore) {
+            console.log(`You win the whole game (${humanScore} vs. ${computerScore})!`);
+          }
+          else {
+            console.log(`Sorry... you have lost (${humanScore} vs. ${computerScore}).`)
+          }
         }
       }
-      playGame();
+
     </script>
   </body>
 </html>
